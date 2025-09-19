@@ -1,6 +1,6 @@
 **Team members:** Baker Hasan, Hannah Dawn Aerni, Shreya Thothathri, Manha Jawahar, Andrew Kim
 ## Overview
-Our project is on reverse software engineering and how we can apply this concept to certain cryptosystems. *(add more here)*
+Our project is on reverse software engineering and how we can apply this concept to certain cryptosystems. Reverse software engineering is the process of analyzing a program or system without source code to uncover how it works, often by examining binaries or hardware. For our proposal, we looked into reverse software engineering as a whole and also into specific cases where it was used to break cryptographic algorithms. Through this research, we figured out how we want to proceed with the report and code by drawing from recent examples. The papers we reviewed inspired us to look at how cryptographic algorithms can become vulnerable if enough internal values or operations are revealed, similar to how the ElGamal system can be compromised when critical variables are exposed even if the secret key itself is not. *(add more here)*
 
 ## ( Retriever: A view-based approach to reverse engineering software architecture models)
 
@@ -20,10 +20,16 @@ There are several pictures to be inserted, I would recommend looking into the pa
 
 In conclusion, the approach offers a structured methodology for reverse engineering that could potentially be applied to enhance software maintenance, improve system understanding, and facilitate architectural analysis in complex systems.
 
-## (Name of Journal/Source)
-Put summary here
-## (Name of Journal/Source)
-Put summary here
+## (Reverse-Engineering a Cryptographic RFID Tag)
+
+[Link](https://www.usenix.org/legacy/event/sec08/tech/full_papers/nohl/nohl.pdf) <br>
+This paper shows how reverse engineering can be used in “man-at-the-end” attacks to dynamically extract cryptographic keys from binaries. The authors explain that keys can be located by tracing how they are used at runtime, even when they are hidden or spread across memory. They emphasize that this type of attack works because implementations often expose keys in practice, even when the cryptographic algorithm itself is secure. This gives us a clear example of how reverse engineering can directly compromise cryptographic systems, and it provides inspiration for us to design a simple demo where a secret embedded in a program can be uncovered.
+
+## (REPQC: Reverse Engineering and Backdooring Hardware Accelerators for Post-quantum Cryptography)
+
+[Link](https://arxiv.org/pdf/2403.09352) <br>
+This paper discusses how reverse engineering can be applied to post-quantum hardware accelerators and introduces REPQC, a reverse-engineering algorithm that identifies cryptographic components such as hashing modules. Once these elements are revealed, the hardware can be backdoored, showing that implementation details pose serious risks even when algorithms are designed to be quantum-resistant. The authors argue that this makes hardware-based post-quantum systems an attractive target, and they highlight the need for defenses beyond mathematical security. This provides us with a useful reference for our report by showing that reverse engineering creates vulnerabilities not only in software but also in hardware.
+
 ## (Name of Journal/Source)
 Put summary here
 ## (Name of Journal/Source)
