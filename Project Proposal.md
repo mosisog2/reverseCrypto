@@ -41,7 +41,12 @@ This article dives into protocol reverse engineering and how systems have been d
 The goal of using ReFormat is to fill in previous gaps that other systems could not recover plaintext from ciphertext messages. It records how an input message is being processed, collects an execution trace, and then uses knowledge on how applications respond to search for the transition point between the decrypting phase and normal protocol phase. It analyzes the percentage of arithmetic and bitwise operations to find out where this transition point is, and then specifically pinpoint areas in the memory buffer that stored the decrypted message. 
 
 The paper goes into depth on how ReFormat was able to identify the decrypted messages for each of the protocols above. It also explains how it performed these experiments depending on the protocol and what was executed in particular to achieve this goal. Although the paper was written in 2009, it applies the ideas of reverse engineering into practice and gives a good example on how it can be used to find decrypted messages from sent commands. 
-## (Name of Journal/Source)
-Put summary here
+## (An Observational Investigation of Reverse Engineers’ Processes)
+[Link](https://www.cs.tufts.edu/~jfoster/papers/usenixsec20.pdf) <br>
+
+This paper discusses the process of reverse engineering, using the results of a semi-structured, observational interview study of reverse engineers. This study observed what kind of questions these reverse engineers asked, how they answered these questions, and the kinds of decisions they made during their process. The authors state that the purpose of this investigation was to see how improvements to the interaction design of reverse engineering tools could be made.
+
+The paper created a general model for the reverse engineering process, divided into three phases: overview, sub-component scanning, and focused experimentation. It also observed the methods used during each phase. This paper provides a useful insight into the process of reverse engineering, which can serve as a basis into our investigation of the reverse engineering process with cryptography specifically.
+
 
 *Closing remarks/conclusion?*
