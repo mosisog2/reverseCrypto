@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  reversecrypto:
+    build: .
+    container_name: reversecrypto-dev
+    volumes:
+      # Mount the current directory to /workspace in the container
+      - .:/workspace
+      # Persist Python virtual environment packages
+      - venv-cache:/home/dev/venv
+    working_dir: /workspace
+    # Keep container running for interactive use
+    stdin_open: true
+    tty: true
+    # Uncomment the following lines if you need to expose ports
+    # ports:
+    #   - "8080:8080"  # Example: if running a web server
+    #   - "8888:8888"  # Example: if running Jupyter notebook
+
+volumes:
+  venv-cache:

@@ -1,0 +1,31 @@
+# Git files
+.git
+.gitignore
+
+# Docker files
+Dockerfile
+.dockerignore
+
+# Documentation (optional - remove if you want docs in container)
+*.md
+LICENSE
+
+# Temporary files
+*.tmp
+*.temp
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Build artifacts (uncomment if you have build outputs to ignore)
+# *.o
+# *.so
+# *.a
+# build/
+# dist/
