@@ -1,19 +1,25 @@
 CFLAGS=-O2 -Wall -Wextra
-INCLUDE=-Icsrc/include
+INCLUDE=-Isrc/include
 
 all: test
 
-csrc/mod.o: csrc/mod.c csrc/include/mod.h
+src/mod.o: src/mod.c src/include/mod.h
 	$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 
-csrc/rsa.o: csrc/rsa.c csrc/include/rsa.h csrc/include/mod.h
+src/rsa.o: src/rsa.c src/include/rsa.h src/include/mod.h
 	$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 
-tests/test_signer: tests/test_signer.c csrc/mod.o csrc/rsa.o
+src/main.o: src/main.c src/include/rsa.h src/include/mod.h
+	$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
+
+src/tests/test_signer: src/tests/test_signer.c src/mod.o src/rsa.o
 	$(CC) $(CFLAGS) $(INCLUDE) $^ -o $@
 
-test: tests/test_signer
-	./tests/test_signer
+main: src/main.o src/mod.o src/rsa.o
+	$(CC) $(CFLAGS) $^ -o $@
+
+test: src/tests/test_signer
+	./src/tests/test_signer
 
 clean:
-	rm -f csrc/*.o tests/test_signer
+	rm -f src/*.o src/tests/test_signer main

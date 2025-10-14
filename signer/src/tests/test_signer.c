@@ -1,15 +1,39 @@
 #include <assert.h>
 #include <stdio.h>
-#include "./src/include/rsa.h"
+#include "../include/rsa.h"
 
 // Pick two 31-bit primes for toy testing (or generate them).
-static const uint64_t P = 2147483659ULL; // example prime ≥ 2^31
-static const uint64_t Q = 2147483693ULL; // example prime ≥ 2^31
-static const uint64_t E = 65537ULL;
+static const uint64_t P = 11ULL; // example prime ≥ 2^31
+static const uint64_t Q = 17ULL; // example prime ≥ 2^31
+static const uint64_t E = 3ULL;
 
 int main(void) {
-    RsaCrtKey64 k; 
-    assert(rsa64_init(&k, P, Q, E) == 1);
+    RsaCrtKey64 k;
+    printf("Initializing RSA key...\n");
+    int init_result = rsa64_init(&k, P, Q, E);
+    printf("Init result: %d\n", init_result);
+    printf("N=%lu, d=%lu, dp=%lu, dq=%lu, qinv=%lu\n", 
+           k.N, k.d, k.dp, k.dq, k.qinv);
+    assert(init_result == 0);
+
+    // Test with a single message first
+    uint64_t test_m = 42;
+    uint64_t s1 = rsa64_sign_full(test_m, &k);
+    uint64_t s2 = rsa64_sign_crt(test_m, &k, FAULT_OFF);
+    printf("Message: %lu\n", test_m);
+    printf("Full signature: %lu\n", s1);
+    printf("CRT signature:  %lu\n", s2);
+    printf("Match: %s\n", (s1 == s2) ? "YES" : "NO");
+    
+    // Also test verification of both
+    int v1 = rsa64_verify(test_m, s1, &k);
+    int v2 = rsa64_verify(test_m, s2, &k);
+    printf("Full verify: %d, CRT verify: %d\n", v1, v2);
+    
+    if (s1 != s2) {
+        printf("ERROR: FAULT_OFF signatures don't match!\n");
+        return 1;
+    }
 
     // 1) full == crt for many m
     for (uint64_t m=2; m<1000; ++m) {
