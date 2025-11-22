@@ -30,9 +30,19 @@ uint64_t powmod64(uint64_t a, uint64_t e, uint64_t n) {
     uint64_t result = 1 % n;
     a = a % n;
     while (e > 0) {
-        if (e & 1) result = (result * a) % n;
-        a = (a * a) % n;
+        if (e & 1) {
+            __uint128_t prod = (__uint128_t)result * a;
+            result = (uint64_t)(prod % n);
+        }
+        __uint128_t square = (__uint128_t)a * a;
+        a = (uint64_t)(square % n);
         e >>= 1;
     }
     return result;
+}
+
+// Modular multiplication: (a * b) mod m, using 128-bit to avoid overflow
+uint64_t mul_mod64(uint64_t a, uint64_t b, uint64_t m) {
+    __uint128_t result = (__uint128_t)a * b;
+    return (uint64_t)(result % m);
 }

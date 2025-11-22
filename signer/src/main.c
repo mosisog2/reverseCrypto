@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdint.h>
 #include "include/rsa.h"
+#include "include/mod.h"
 
 int main(void) {
     printf("RSA CRT Signer Demo\n");

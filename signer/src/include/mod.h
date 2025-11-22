@@ -9,3 +9,5 @@ uint64_t modinv64(uint64_t a, uint64_t n);
 
 /* Square-and-multiply: computes a^e mod n */
 uint64_t powmod64(uint64_t a, uint64_t e, uint64_t n);
+
+uint64_t mul_mod64(uint64_t a, uint64_t b, uint64_t m);
